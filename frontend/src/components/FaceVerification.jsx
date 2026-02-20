@@ -17,7 +17,7 @@ const FaceVerification = () => {
 
         try {
             const response = await axios.post("http://localhost:8000/verify", formData);
-            if (response.data.faces.length > 0) {
+            if (response.data.faces?.length > 0) {
                 setUser(response.data.faces[0].name);
             } else {
                 setUser("");
@@ -30,11 +30,13 @@ const FaceVerification = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             capture();
-        }, 2000);
+        }, 3000);
         return () => clearInterval(interval);
-    }, [capture]);
+    }, [capture, user]);
 
     const hour = new Date().getHours();
+
+    console.log(user)
 
     const getGreeting = () => {
         if (hour < 4) return "Good night";
@@ -54,7 +56,7 @@ const FaceVerification = () => {
                 className="m-auto rotate-y-180"
             />
             {user &&
-                <h2 className="font-bold text-2xl" >{getGreeting()} {user.split(" ").slice(0, -1).join(" ")}</h2>
+                <h2 className="font-bold text-2xl" >{getGreeting()} {user.split("_" ?? " ").slice(0, -1).join(" ")}</h2>
             }
         </div>
     )

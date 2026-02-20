@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Assistant from "./pages/Assistant";
 import Sidebar from "./components/Sidebar";
 import Navigation from "./pages/Navigation";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
     {
       path: "/navigation",
       element: <><Navigation /> <Sidebar /></>
+    },
+    {
+      path: "/admin",
+      element: <><AdminPanel /> <Sidebar /></>
     },
   ])
 
